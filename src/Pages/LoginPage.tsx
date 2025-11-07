@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from "react"
-import { login } from "../services/auth"
+import { getMyDetails, login } from "../services/auth"
 import { useNavigate } from "react-router-dom"
 
 export default function LoginPage() {
@@ -10,10 +10,20 @@ export default function LoginPage() {
     const handleLogin = async(e:FormEvent)=>{
         e.preventDefault()
         try{
-            const res:any = await login(Email,Password)
-            console.log(res);
-            alert("Login Done")
-            navigate("/welcome")
+           const res = await login(Email, Password)
+            console.log(res.data.accessToken)
+        
+            if (!res.data.accessToken) {
+                alert("Login Failed")
+                return
+            }
+            await localStorage.setItem("accessToken", res.data.accessToken);
+
+            const detail = await getMyDetails()
+
+            console.log(detail.data)
+
+            navigate("/")
         }catch(err){
              console.log("ERROR", err);
         }
