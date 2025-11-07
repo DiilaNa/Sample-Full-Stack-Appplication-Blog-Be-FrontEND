@@ -1,7 +1,10 @@
 import axios from "axios"
 import { useState, type FormEvent } from "react"
+import { registration } from "../services/auth"
+import { useNavigate } from "react-router-dom"
 
 export default function RegisterPage() {
+    const navigate = useNavigate()
     const[FirstName , setFirstName] = useState("")
     const[LastName , setLastName] = useState("")
     const[Email , setEmail] = useState("")
@@ -16,27 +19,40 @@ export default function RegisterPage() {
             return
         }
         if(Password !== ConfirmPassword){
-            alert
+            alert("Password Do not match")
             return
         }
 
         try{
-           const response =  await axios.post(
-            "http://localhost:5000/api/v1/auth/register",
-             {
+            const obj = {
                 firstname: FirstName,
                 lastname: LastName,
                 email: Email,
                 password: Password,
                 role: Role
-             },
-             {
-                headers:{
-                    "Content-Type":"application/json"
-                }
-             })
+            }
 
-             console.log(response);
+            const res:any = await registration(obj)
+            console.log(res);
+            alert("Register Done")
+            navigate('/login')
+            
+        //    const response =  await axios.post(
+        //     "http://localhost:5000/api/v1/auth/register",
+        //      {
+        //         firstname: FirstName,
+        //         lastname: LastName,
+        //         email: Email,
+        //         password: Password,
+        //         role: Role
+        //      },
+        //      {
+        //         headers:{
+        //             "Content-Type":"application/json"
+        //         }
+        //      })
+
+        //      console.log(response);
              
 
         }catch(err){
@@ -76,8 +92,8 @@ export default function RegisterPage() {
                 onChange={(e) => setConfirmPassword(e.target.value)}
             />
             <select value={Role} onChange={(e)=>setRole(e.target.value)}>
-                <option value="User">User</option>
-                <option value="Author">Author</option>
+                <option value="USER">USER</option>
+                <option value="AUTHOR">AUTHOR</option>
             </select>
             <button onClick={handleregister}>Register</button>
         </div>
