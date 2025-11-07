@@ -1,4 +1,3 @@
-import axios from "axios"
 import { useState, type FormEvent } from "react"
 import { registration } from "../services/auth"
 import { useNavigate } from "react-router-dom"
