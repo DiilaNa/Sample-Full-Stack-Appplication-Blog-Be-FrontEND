@@ -1,39 +1,43 @@
 import { useState, type FormEvent } from "react"
 import { getMyDetails, login } from "../services/auth"
 import { useNavigate } from "react-router-dom"
+import { useAuth } from "../context/authContext"
 
 export default function LoginPage() {
     const navigate = useNavigate()
-    const[Email , setEmail] = useState("")
+    const {setUser} = useAuth()
+    const[email , setEmail] = useState("")
     const[Password , setPassword] = useState("")
 
     const handleLogin = async(e:FormEvent)=>{
-        e.preventDefault()
+         e.preventDefault()
+         if(!email || !Password){
+            alert("..All fields required")
+            return
+         }
         try{
-           const res = await login(Email, Password)
-            console.log(res.data.accessToken)
+           const res = await login(email, Password)
         
             if (!res.data.accessToken) {
                 alert("Login Failed")
                 return
             }
-            await localStorage.setItem("accessToken", res.data.accessToken);
-            await localStorage.setItem("refreshToken", res.data.refreshToken)
+             localStorage.setItem("accessToken", res.data.accessToken);
+             localStorage.setItem("refreshToken", res.data.refreshToken)
 
             const detail = await getMyDetails()
+            setUser(detail.data)
+            navigate("/home")
 
-            console.log(detail.data)
-
-            navigate("/")
         }catch(err){
-             console.log("ERROR", err);
+            console.log("ERROR", err);
         }
     }
     return (
         <div>
              <div>Login Page</div>
              <input placeholder="Email"
-                value={Email}
+                value={email}
                 onChange={(e)=>setEmail(e.target.value)}
              ></input>
              <input placeholder="Password"

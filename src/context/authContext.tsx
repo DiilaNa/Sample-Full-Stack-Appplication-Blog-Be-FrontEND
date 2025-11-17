@@ -5,6 +5,7 @@ const AuthContext = createContext<any>(null);
 
 export const AuthProvide = ({children}:any) =>{
     const[user,setUser] = useState<any>(null)
+    const [loading,setLoading] = useState(true)
 
 
     useEffect(() => {
@@ -18,11 +19,17 @@ export const AuthProvide = ({children}:any) =>{
                 setUser(null)
                 console.error(err)
             })
+            .finally(()=>{
+                setLoading(false)
+            })
+        }else{
+            setUser(null)
+            setLoading(false)
         }
     },[])
 
     return(
-        <AuthContext.Provider value = {{user,setUser}}>
+        <AuthContext.Provider value = {{user,setUser,loading}}>
         {children}
         </AuthContext.Provider>
     )

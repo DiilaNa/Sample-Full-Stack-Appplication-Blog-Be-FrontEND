@@ -8,14 +8,12 @@ const api = axios.create({
 const PUBLIC_ENDPOINTS = ["/auth/login","/auth/register"]
 
 api.interceptors.request.use((cofig) => {
-    cofig.headers
-    cofig.url
 
     const token = localStorage.getItem("accessToken")
     const isPublic = PUBLIC_ENDPOINTS.some((url) => cofig.url?.includes(url));
 
     if(token && !isPublic){
-        cofig.headers.Authorization =`Bearer $(token)`
+        cofig.headers.Authorization =`Bearer ${token}`
     }
     return cofig
     
@@ -37,11 +35,13 @@ api.interceptors.response.use(
                     throw new Error("No Refresh Token available")
                 }
                 const res = await refreshTokens(refreshToken)
-                localStorage.set("accessToken",res.accessToken)
+                localStorage.setItem("accessToken",res.accessToken)
                 originalRequest.headers.Authorization = `Bearer ${res.accessToken}`
                 return axios(originalRequest)
             }catch(err){
-
+                localStorage.clear()
+                window.location.href = "/login"
+                return Promise.reject(err)
             }
         }
         return Promise.reject(err)
