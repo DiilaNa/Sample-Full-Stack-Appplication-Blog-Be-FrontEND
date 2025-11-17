@@ -15,6 +15,8 @@ export default function Router (){
         <Route path="/home" element={<Home />} />
         <Route path="/" element={<Register />} />
         <Route path="/welcome" element={<Welcome />} />
+        <Route path="/welcome" element={<Welcome />} />
+
       </Routes>
       </Suspense>
     </BrowserRouter>
