@@ -18,6 +18,7 @@ export default function LoginPage() {
                 return
             }
             await localStorage.setItem("accessToken", res.data.accessToken);
+            await localStorage.setItem("refreshToken", res.data.refreshToken)
 
             const detail = await getMyDetails()
 

@@ -2,49 +2,49 @@ import { useEffect, useState, type ChangeEvent, type FormEvent } from "react"
 import { createPost, getAllPost } from "../services/Post"
 
 export default function Post() {
-  const [post, setPost] = useState([])
-  const [page, setPage] = useState(1)
-  const [totalPage, setTotalPage] = useState(1)
+    const [post, setPost] = useState([])
+    const [page, setPage] = useState(1)
+    const [totalPage, setTotalPage] = useState(1)
 
-  const [title, setTitle] = useState("")
-  const [content, setContent] = useState("")
-  const [tags, setTags] = useState("")
-  const [image, setImage] = useState<File | null>(null)
-  const [preview, setPreview] = useState("")
+    const [title, setTitle] = useState("")
+    const [content, setContent] = useState("")
+    const [tags, setTags] = useState("")
+    const [image, setImage] = useState<File | null>(null)
+    const [preview, setPreview] = useState("")
 
-  const fetchData = async (pageNumber = 1) => {
+const fetchData = async (pageNumber = 1) => {
     try {
-      const data = await getAllPost(pageNumber, 2)
-      setPost(data?.data)
-      setTotalPage(data?.totalPages)
-      setPage(pageNumber)
+    const data = await getAllPost(pageNumber, 2)
+    setPost(data?.data)
+    setTotalPage(data?.totalPages)
+    setPage(pageNumber)
     } catch (err) {
-      console.error(err)
+        console.error(err)
     }
-  }
+}
 
-  useEffect(() => {
-    fetchData()
-  }, [])
+    useEffect(() => {
+        fetchData()
+    }, [])
 
-  const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
     if (file) {
-      setImage(file)
-      setPreview(URL.createObjectURL(file))
+        setImage(file)
+        setPreview(URL.createObjectURL(file))
     }
-  }
+}
 
-  const handleSavePost = async (e: FormEvent) => {
+const handleSavePost = async (e: FormEvent) => {
     e.preventDefault()
     try {
-      const formData = new FormData()
+    const formData = new FormData()
       formData.append("title", title)
       formData.append("content", content)
       formData.append("tags", tags)
       if (image) formData.append("image", image)
 
-      const res = await createPost(formData)
+        const res = await createPost(formData)
 
       await fetchData(1)
     } catch (err) {
