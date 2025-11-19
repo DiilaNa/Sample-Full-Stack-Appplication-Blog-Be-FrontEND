@@ -25,7 +25,10 @@ api.interceptors.response.use(
     },
     async (err:AxiosError) => {
         const originalRequest:any = err.config
-        const isPublic = PUBLIC_ENDPOINTS.some((url) => originalRequest.url?.includes(url));
+
+        const isPublic = PUBLIC_ENDPOINTS.some((url) =>
+            originalRequest.url?.includes(url)
+        );
 
         if(err.response?.status === 401 && !isPublic && !originalRequest._retry) {
             originalRequest._retry = true
@@ -41,6 +44,7 @@ api.interceptors.response.use(
             }catch(err){
                 localStorage.clear()
                 window.location.href = "/login"
+                console.error(err)
                 return Promise.reject(err)
             }
         }

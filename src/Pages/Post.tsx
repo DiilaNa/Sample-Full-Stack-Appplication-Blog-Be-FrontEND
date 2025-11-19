@@ -43,8 +43,8 @@ const handleSavePost = async (e: FormEvent) => {
       formData.append("content", content)
       formData.append("tags", tags)
       if (image) formData.append("image", image)
-
-      const res = await createPost(formData)
+      
+        await createPost(formData)
 
       await fetchData(1)
     } catch (err) {
