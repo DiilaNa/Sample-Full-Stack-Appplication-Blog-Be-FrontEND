@@ -1,5 +1,5 @@
 import { BrowserRouter,Navigate,Route,Routes } from "react-router-dom";
-import { Children, lazy, Suspense, type ReactNode } from 'react'
+import {lazy, Suspense, type ReactNode } from 'react'
 import { useAuth } from "../context/authContext";
 
 const Home = lazy(() => import ('../Pages/HomePage'))

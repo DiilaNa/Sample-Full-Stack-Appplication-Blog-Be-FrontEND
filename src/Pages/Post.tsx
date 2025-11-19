@@ -38,13 +38,13 @@ const fetchData = async (pageNumber = 1) => {
 const handleSavePost = async (e: FormEvent) => {
     e.preventDefault()
     try {
-    const formData = new FormData()
+      const formData = new FormData()
       formData.append("title", title)
       formData.append("content", content)
       formData.append("tags", tags)
       if (image) formData.append("image", image)
 
-        const res = await createPost(formData)
+      const res = await createPost(formData)
 
       await fetchData(1)
     } catch (err) {

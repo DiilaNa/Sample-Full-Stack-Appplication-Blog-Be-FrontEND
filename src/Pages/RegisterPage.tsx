@@ -54,8 +54,8 @@ export default function RegisterPage() {
         //      console.log(response);
              
 
-        }catch(err){
-             console.log("ERROR", err);
+        }catch(err:any){
+             console.error(err?.response?.data);
                 
         }
 
