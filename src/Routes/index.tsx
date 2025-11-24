@@ -59,7 +59,7 @@ const RequireAuth = ({children,roles}:RequireAuthTypes) => {
 // }
 
 export default function Router() {
-   return (
+  return (
     <BrowserRouter>
       <Suspense
         fallback={
