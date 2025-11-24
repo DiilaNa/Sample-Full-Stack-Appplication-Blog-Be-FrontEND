@@ -91,21 +91,6 @@ export default function Router() {
               }
             />
           </Route>
-
-          {/* 
-          <RequireAuth shamodha={""}>
-            <div></div>
-          </RequireAuth> */}
-          {/* <Route
-            path="/home"
-            element={
-              <RequireAuth>
-                <Home />
-              </RequireAuth>
-            }
-          /> */}
-
-          {/*Using Outlet create layout for home, post */}
         </Routes>
       </Suspense>
     </BrowserRouter>
