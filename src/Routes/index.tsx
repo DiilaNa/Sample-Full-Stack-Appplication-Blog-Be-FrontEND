@@ -8,7 +8,6 @@ const Login = lazy(() => import ('../Pages/LoginPage'))
 const Register = lazy(() => import ('../Pages/RegisterPage'))
 const Welcome = lazy(() => import ('../Pages/WelcomePage'))
 const Post = lazy(() => import("../Pages/Post"))
-const MyPost = lazy(() => import("../Pages/MyPost"))
 
 type RequireAuthTypes = {children:ReactNode;  roles?: string[] }
 
@@ -39,25 +38,6 @@ const RequireAuth = ({children,roles}:RequireAuthTypes) => {
     return <>{children}</>
 }
 
-// export default function Router (){
-//     return(
-//           <BrowserRouter>
-//       <Suspense fallback={<div>Loading ....</div>}>
-//       <Routes>
-//         <Route path="/login" element={<Login />} />
-//         <Route path="/" element={<Register />} />
-//         <Route path="/welcome" element={<Welcome />} />
-
-//         <Route path="/home" element={<RequireAuth>
-//           <Home />
-//         </RequireAuth>} />
-        
-//       </Routes>
-//       </Suspense>
-//     </BrowserRouter>
-//     )
-// }
-
 export default function Router() {
   return (
     <BrowserRouter>
@@ -82,14 +62,6 @@ export default function Router() {
           >
             <Route path="/home" element={<Home />} />
             <Route path="/post" element={<Post />} />
-            <Route
-              path="/my-post"
-              element={
-                <RequireAuth roles={["ADMIN", "AUTHOR"]}>
-                  <MyPost />
-                </RequireAuth>
-              }
-            />
           </Route>
         </Routes>
       </Suspense>
