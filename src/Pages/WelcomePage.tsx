@@ -9,7 +9,7 @@ export default function WelcomePage() {
                         Welcome to <span className="text-blue-600">Smart Blog</span>
                     </h1>
                     <p className="text-lg text-gray-600 max-w-md mx-auto">
-                        Share your thoughts, connect with readers, and explore amazing content
+                        Share your thoughts, connect with readers, and explore 
                     </p>
                 </div>
                 
