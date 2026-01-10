@@ -10,7 +10,7 @@ export default function HomePage() {
     
     const fetchData = async (pageNumber = 1) => {
         try {
-            const data = await getAllPost(pageNumber, 6); // Load 6 posts per page
+            const data = await getAllPost(pageNumber, 6); 
             setPosts(data?.data);
             setTotalPage(data?.totalPages);
             setPage(pageNumber);
@@ -32,7 +32,6 @@ export default function HomePage() {
             
             <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">Latest Posts</h2>
             
-            {/* Posts Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
                 {posts.map((p: any, index) => (
                     <div
@@ -64,7 +63,6 @@ export default function HomePage() {
                 ))}
             </div>
             
-            {/* Pagination */}
             <div className="flex justify-between items-center mt-8">
                 <button
                     onClick={() => {

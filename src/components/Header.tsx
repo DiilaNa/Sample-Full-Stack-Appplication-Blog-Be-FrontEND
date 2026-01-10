@@ -26,11 +26,6 @@ export default function Header() {
             My Post
           </Link>
         )}
-        {/* {user.roles?.includes("ADMIN") || user.roles?.includes("AUTHOR") ? (
-          <Link to="/my-post" className="hover:underline">
-            My Post
-          </Link>
-        ) : null} */}
       </div>
       <div className="flex items-center space-x-4">
         <span>{user?.email}</span>

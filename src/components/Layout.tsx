@@ -11,6 +11,5 @@ function Layout() {
     </div>
   )
 }
-// 768px -> desk, mobile
 
 export default Layout
