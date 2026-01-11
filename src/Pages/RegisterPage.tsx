@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from "react"
 import { registration } from "../services/auth"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 export default function RegisterPage() {
     const navigate = useNavigate()
@@ -124,7 +124,7 @@ export default function RegisterPage() {
                 <div className="mt-6 text-center">
                     <p className="text-gray-600">
                         Already have an account? 
-                        <a href="/login" className="text-blue-600 hover:underline font-medium">Login</a>
+                        <Link to="/login" className="text-blue-600 hover:underline font-medium">Login</Link>
                     </p>
                 </div>
             </div>

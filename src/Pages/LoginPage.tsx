@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from "react"
 import { getMyDetails, login } from "../services/auth"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { useAuth } from "../context/authContext"
 
 export default function LoginPage() {
@@ -73,7 +73,7 @@ export default function LoginPage() {
                 <div className="mt-6 text-center">
                     <p className="text-gray-600">
                         Don't have an account? 
-                        <a href="/register" className="text-blue-600 hover:underline font-medium">Register</a>
+                        <Link to="/register" className="text-blue-600 hover:underline font-medium">Register</Link>
                     </p>
                 </div>
             </div>
