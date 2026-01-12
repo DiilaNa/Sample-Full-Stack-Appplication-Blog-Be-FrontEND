@@ -29,16 +29,16 @@ Smart Blog is a modern, full-stack blogging platform where users can seamlessly 
 > Note: Add your screenshots inside a folder named `screenshots` in your repository to make these links work!
 
 ### Home Page
-![Home Page](screenshots/homepage.png)
+![Home Page](/public/screenshots/welcome.png)
 
 ### Login Page
-![Login Page](screenshots/login.png)
+![Login Page](/public/screenshots/login.png)
 
 ### Create Post
-![Create Post](screenshots/create-post.png)
+![Create Post](/public/screenshots/myfeed.png)
 
 ### All Posts
-![All Posts](screenshots/posts.png)
+![All Posts](/public/screenshots/feed.png)
 
 ## 🔗 Project Links
 
