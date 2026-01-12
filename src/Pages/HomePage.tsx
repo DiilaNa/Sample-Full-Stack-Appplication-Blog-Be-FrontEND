@@ -39,7 +39,7 @@ export default function HomePage() {
 
   return (
     <div className="animate-in fade-in slide-in-from-bottom-4 duration-1000">
-      {/* Hero Welcome Section - Responsive text sizes */}
+      {/* Hero Welcome Section */}
       <div className="mb-10 md:mb-16 border-l-4 border-blue-500 pl-4 md:pl-8 py-2">
         <h1 className="text-3xl md:text-5xl font-black text-white tracking-tight">
           Welcome back,{" "}
@@ -63,7 +63,6 @@ export default function HomePage() {
         </h2>
       </div>
 
-      {/* Conditional Rendering: Loading State */}
       {loading ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {[1, 2, 3].map((n) => (
@@ -74,14 +73,12 @@ export default function HomePage() {
           ))}
         </div>
       ) : posts.length > 0 ? (
-        /* Posts Grid - Responsive columns */
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {posts.map((p, index) => (
             <article
               key={index}
               className="group bg-[#1e293b]/30 backdrop-blur-xl border border-white/10 rounded-[2rem] overflow-hidden hover:border-blue-500/40 transition-all duration-500 flex flex-col hover:shadow-[0_20px_50px_rgba(37,99,235,0.15)]"
             >
-              {/* Image Section with Overlay */}
               <div className="relative h-56 overflow-hidden">
                 <img
                   src={
@@ -99,7 +96,6 @@ export default function HomePage() {
                 </div>
               </div>
 
-              {/* Content Section */}
               <div className="p-6 md:p-8 flex-1 flex flex-col">
                 <h3 className="text-xl font-bold text-white mb-3 line-clamp-2 group-hover:text-blue-400 transition-colors duration-300">
                   {p?.title}
@@ -108,20 +104,28 @@ export default function HomePage() {
                   {p?.content}
                 </p>
 
-                {/* Tags - Pill styled */}
+                {/* --- FIXED TAG LOGIC --- */}
                 <div className="flex flex-wrap gap-2 mt-auto">
-                  {p?.tags?.split(",").map((tag, i) => (
-                    <span
-                      key={i}
-                      className="bg-white/5 text-gray-500 text-[9px] font-bold px-3 py-1 rounded-full border border-white/5 uppercase tracking-tighter"
-                    >
-                      {tag.trim()}
+                  {p?.tags && typeof p.tags === "string" ? (
+                    p.tags
+                      .split(",")
+                      .filter((tag) => tag.trim() !== "")
+                      .map((tag, i) => (
+                        <span
+                          key={i}
+                          className="bg-white/5 text-gray-500 text-[9px] font-bold px-3 py-1 rounded-full border border-white/5 uppercase tracking-tighter"
+                        >
+                          {tag.trim()}
+                        </span>
+                      ))
+                  ) : (
+                    <span className="text-[9px] text-gray-600 italic">
+                      #general
                     </span>
-                  ))}
+                  )}
                 </div>
               </div>
 
-              {/* Footer Section */}
               <div className="px-6 py-5 bg-white/5 border-t border-white/5 flex items-center justify-between">
                 <div className="flex items-center space-x-3">
                   <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center text-xs font-bold text-white ring-2 ring-white/10">
@@ -141,7 +145,6 @@ export default function HomePage() {
           ))}
         </div>
       ) : (
-        /* Empty State */
         <div className="flex flex-col items-center justify-center py-20 px-6 bg-[#1e293b]/20 border border-dashed border-white/10 rounded-[3rem] text-center">
           <div className="w-20 h-20 bg-blue-500/10 rounded-full flex items-center justify-center mb-6">
             <svg
@@ -171,11 +174,9 @@ export default function HomePage() {
             The community is quiet right now. Why not be the first to share your
             thoughts?
           </p>
-         
         </div>
       )}
 
-      {/* Pagination - Only show if posts exist and totalPages > 1 */}
       {!loading && posts.length > 0 && totalPage > 1 && (
         <div className="flex flex-col sm:flex-row justify-center items-center gap-6 mt-16 mb-12">
           <button
@@ -185,11 +186,9 @@ export default function HomePage() {
           >
             <span>←</span> Previous
           </button>
-
           <div className="px-6 py-3 rounded-2xl bg-blue-600/10 border border-blue-500/20 text-blue-400 font-mono text-sm font-bold">
             {page} / {totalPage}
           </div>
-
           <button
             onClick={() => fetchData(page + 1)}
             disabled={page === totalPage}

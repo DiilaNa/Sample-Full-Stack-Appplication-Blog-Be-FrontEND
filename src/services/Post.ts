@@ -15,6 +15,6 @@ export const getAllPost = async(page:number,limit: number) => {
 }
 
 export const getMyPost = async(page:number,limit: number) => {
-    const res = await api.get(`/post?page=${page}&limit=${limit}`)
+    const res = await api.get(`/post/viewmypost?page=${page}&limit=${limit}`);
     return res.data
 }

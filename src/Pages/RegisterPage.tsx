@@ -82,7 +82,7 @@ export default function RegisterPage() {
                     First Name
                   </label>
                   <input
-                    placeholder="John"
+                    placeholder="Dilan"
                     type="text"
                     value={FirstName}
                     onChange={(e) => setFirstName(e.target.value)}
@@ -94,7 +94,7 @@ export default function RegisterPage() {
                     Last Name
                   </label>
                   <input
-                    placeholder="Doe"
+                    placeholder="Liyanaarachchi"
                     type="text"
                     value={LastName}
                     onChange={(e) => setLastName(e.target.value)}
@@ -109,7 +109,7 @@ export default function RegisterPage() {
                   Email Address
                 </label>
                 <input
-                  placeholder="john@example.com"
+                  placeholder="dilan@example.com"
                   type="email"
                   value={Email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -156,7 +156,6 @@ export default function RegisterPage() {
                   className="w-full px-5 py-3.5 bg-gray-800 border border-white/10 rounded-2xl text-white focus:ring-2 focus:ring-blue-500/50 outline-none transition-all appearance-none cursor-pointer"
                 >
                   <option value="USER">READER (Standard User)</option>
-                  <option value="AUTHOR">AUTHOR (Content Creator)</option>
                 </select>
               </div>
 

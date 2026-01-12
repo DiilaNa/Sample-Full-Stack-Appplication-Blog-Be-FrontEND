@@ -2,7 +2,7 @@ import axios, { AxiosError } from "axios";
 import { refreshTokens } from "./auth";
 
 const api = axios.create({
-  baseURL: "https://sample-full-stack-appplication-blog.vercel.app/api/v1",
+  baseURL: "http://localhost:5001/api/v1",
 });
 
 const PUBLIC_ENDPOINTS = ["/auth/login","/auth/register"]

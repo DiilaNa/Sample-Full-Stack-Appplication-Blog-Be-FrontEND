@@ -67,7 +67,7 @@ export default function LoginPage() {
                   Email Address
                 </label>
                 <input
-                  placeholder="e.g. alex@smartblog.com"
+                  placeholder="e.g. dilan@smartblog.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="w-full px-5 py-4 bg-white/5 border border-white/10 rounded-2xl text-white placeholder-gray-600 focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 focus:bg-white/[0.08] outline-none transition-all duration-300"

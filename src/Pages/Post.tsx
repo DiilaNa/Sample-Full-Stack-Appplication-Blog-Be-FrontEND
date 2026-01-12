@@ -1,5 +1,5 @@
 import { useEffect, useState, type ChangeEvent, type FormEvent } from "react";
-import { createPost, getAllPost } from "../services/Post";
+import { createPost, getMyPost } from "../services/Post";
 
 export default function Post() {
   const [post, setPost] = useState([]);
@@ -28,7 +28,7 @@ export default function Post() {
   const fetchData = async (pageNumber = 1) => {
     setLoading(true);
     try {
-      const data = await getAllPost(pageNumber, 6);
+      const data = await getMyPost(pageNumber, 6);
       setPost(data?.data || []);
       setTotalPage(data?.totalPages || 1);
       setPage(pageNumber);
@@ -243,14 +243,30 @@ export default function Post() {
                   "{p?.content}"
                 </p>
                 <div className="flex flex-wrap gap-2 mt-auto">
-                  {p?.tags?.split(",").map((tag: string, i: number) => (
-                    <span
-                      key={i}
-                      className="bg-purple-500/10 text-purple-400 text-[10px] px-2.5 py-1 rounded-md border border-purple-500/20 font-bold uppercase tracking-widest"
-                    >
-                      {tag.trim()}
+                  {/* Check if p.tags exists and is a string before splitting */}
+                  {typeof p?.tags === "string" ? (
+                    p.tags.split(",").map((tag: string, i: number) => (
+                      <span
+                        key={i}
+                        className="bg-purple-500/10 text-purple-400 text-[10px] px-2.5 py-1 rounded-md border border-purple-500/20 font-bold uppercase tracking-widest"
+                      >
+                        {tag.trim()}
+                      </span>
+                    ))
+                  ) : Array.isArray(p?.tags) ? (
+                    /* If the API already sends an array, just map it directly */
+                    p.tags.map((tag: string, i: number) => (
+                      <span key={i} className="...">
+                        {" "}
+                        {tag}{" "}
+                      </span>
+                    ))
+                  ) : (
+                    /* If no tags, show nothing or a default tag */
+                    <span className="text-[10px] text-gray-600 italic">
+                      No tags
                     </span>
-                  ))}
+                  )}
                 </div>
               </div>
               <div className="px-6 py-4 bg-white/5 border-t border-white/5 flex justify-between items-center">
