@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 export default function Navbar() {
   return (
     <>
-      {" "}
-      {/* --- Modern Navbar --- */}
       <nav className="sticky top-0 w-full z-50 bg-[#0f172a]/80 backdrop-blur-md border-b border-white/5 shrink-0">
         <div className="max-w-7xl mx-auto px-6 md:px-12 h-20 flex items-center justify-between">
           <Link

@@ -40,7 +40,10 @@ export default function LoginPage() {
       <div
         className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-purple-600/20 blur-[120px] animate-pulse"
         style={{ animationDelay: "2s" }}
-      ></div>
+      >
+
+        
+      </div>
 
       <Navbar />
 

@@ -4,11 +4,8 @@ import Navbar from "../components/Navbar";
 export default function WelcomePage() {
   return (
     <div className="min-h-screen flex flex-col font-sans text-gray-900 overflow-x-hidden">
-        
-        <Navbar/>
-      {/* --- Hero Section with Video Background --- */}
+      <Navbar />
       <header className="relative h-screen w-full flex items-center justify-center overflow-hidden">
-        {/* Video Overlay */}
         <div className="absolute inset-0 z-0">
           <video
             autoPlay
@@ -17,16 +14,12 @@ export default function WelcomePage() {
             playsInline
             className="w-full h-full object-cover scale-105 blur-[2px]"
           >
-            <source
-              src="https://assets.mixkit.co/videos/preview/mixkit-working-at-a-coffee-shop-with-a-laptop-4840-large.mp4"
-              type="video/mp4"
-            />
+            <source src="/SmartBlog.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
           </video>
-          {/* Dark gradient overlay for readability */}
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70"></div>
         </div>
 
-        {/* Hero Content */}
         <div className="relative z-10 text-center px-4 max-w-4xl">
           <h1 className="text-5xl md:text-7xl font-extrabold text-white mb-6 tracking-tight">
             Write your{" "}
@@ -55,7 +48,6 @@ export default function WelcomePage() {
           </div>
         </div>
 
-        {/* Scroll Indicator */}
         <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce text-white/50">
           <svg
             className="w-6 h-6"
@@ -73,7 +65,6 @@ export default function WelcomePage() {
         </div>
       </header>
 
-      {/* --- About Us Section --- */}
       <section id="about" className="py-24 bg-white px-6">
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-2 gap-16 items-center">
@@ -107,7 +98,6 @@ export default function WelcomePage() {
         </div>
       </section>
 
-      {/* --- Footer --- */}
       <footer className="bg-gray-950 text-gray-400 py-12 px-6 border-t border-gray-900">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
           <div>
